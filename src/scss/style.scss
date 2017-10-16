@@ -1,0 +1,8 @@
+$fontSize: 30px;
+
+.test {
+  $fontSize: 140px;
+  font-size: $fontSize;
+}
+
+
