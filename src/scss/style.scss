@@ -1,8 +1,14 @@
-$fontSize: 30px;
+@import "config";
 
-.test {
-  $fontSize: 140px;
-  font-size: $fontSize;
+body{
+  background-color: $background-color;
+  font-size: $font-size;
+  font-family: $font-family;
+  height: $app-height;
+  p{
+    color: $font-color;
+    background-color: $background-color;
+  }
 }
 
 

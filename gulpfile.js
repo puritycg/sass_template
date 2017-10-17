@@ -4,7 +4,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const concat = require('gulp-concat');
 const sourceMaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
-const gutil = require('gulp-util');
+
 
 /* ********** Config Object ********** */
 let config = {
@@ -18,17 +18,12 @@ let config = {
     }
 };
 
-/* ********** Error log for SASS ********** */
-let onError = function (err) {
-    gutil.log(gutil.colors.red("ERROR", 'sass'), err);
-    this.emit("end", new gutil.PluginError('sass', err, { showStack: true }));
-};
 
 /* ********** SASS Task ********** */
 gulp.task('scss', function () {
     return gulp.src(config.path.scss)
         .pipe(sourceMaps.init())
-        .pipe(sass().on('error', onError))
+        .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
         .pipe(concat(config.output.cssName))
         .pipe(autoprefixer())
         .pipe(sourceMaps.write())
